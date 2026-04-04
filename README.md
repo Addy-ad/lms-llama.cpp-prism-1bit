@@ -9,7 +9,13 @@ This guide details how to compile a patched version of `llama.cpp` to enable **1
 * **Git and CMake:** Installed and configured in your system PATH
 * **Microsoft Visual Studio 2022 or later**. Install with the **"Desktop development with C++"** workload.
 
-## Repository Information
+## Download Pre-compiled Binaries
+
+For a quick setup, download the latest stable release for Windows (CUDA 13.2 / AVX2) [HERE](https://github.com/Addy-ad/lms-llama.cpp-prism-1bit/releases/tag/v1.0.0-cuda13.2)
+**Note:** Requires supported NVIDIA device with Display Driver version 570.xx or newer to support the CUDA 13.2 runtime included in this package.
+Optimized specifically for RTX 40-series (Ada Lovelace) architectures.
+
+## Release Information
 
 * **Mintplex-Labs Fork:** [prism-ml-llama.cpp](https://github.com/Mintplex-Labs/prism-ml-llama.cpp) (Tag: [prism-b8656-520d93d](https://github.com/Mintplex-Labs/prism-ml-llama.cpp/releases/tag/prism-b8656-520d93d))
 * **Upstream:** [ggml-org/llama.cpp](https://github.com/ggml-org/llama.cpp) (Last tested release: [b8664](https://github.com/ggml-org/llama.cpp/tree/b8664))
@@ -90,3 +96,14 @@ Paste and overwrite them into the LM Studio folder:
 2.  Go to the **Local Server** or **AI Chat** settings.
 3.  Under the Runtime/Backend selection, choose **Cuda 12 llama.cpp v1.0.0**.
 4.  Load the **1bit Bonsai-8B** model.
+
+## Example code to test in llama.cpp with the [provided release](https://github.com/Addy-ad/lms-llama.cpp-prism-1bit/releases/tag/v1.0.0-cuda13.2)
+
+```powershell
+.\llama-cli.exe -m "model\Bonsai-8B.gguf" -p "<|begin_of_text|><|start_header_id|>user<|end_header_id|>`n`nExplain quantum computing in simple terms.<|eot_id|><|start_header_id|>assistant<|end_header_id|>`n`n" -n 256 --temp 0.5 -ngl 99
+```
+
+the result:
+
+<img width="2382" height="737" alt="image" src="https://github.com/user-attachments/assets/856771bc-c0a5-469b-beaa-5cbc90c11054" />
+

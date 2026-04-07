@@ -9,6 +9,23 @@ This guide details how to compile a patched version of `llama.cpp` to enable **1
 * **Git and CMake:** Installed and configured in your system PATH
 * **Microsoft Visual Studio 2022 or later**. Install with the **"Desktop development with C++"** workload.
 
+
+## *Edit*
+Official llama.cpp branch (https://github.com/ggml-org/llama.cpp/releases/tag/b8682) now includes official 1-bit quantization support. 
+There is no longer a strict need to use the Mintplex-Labs Fork for 1-bit models. 
+
+The instructions to build the official version are as follows:
+
+```powershell
+git clone https://github.com/ggml-org/llama.cpp.git
+cd llama.cpp
+cmake -B build -A x64 -DGGML_CUDA=ON -DCMAKE_CUDA_ARCHITECTURES=89 -DGGML_AVX2=ON -DBUILD_SHARED_LIBS=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_CXX_FLAGS="/w" -DCMAKE_C_FLAGS="/w"
+cmake --build build --config Release -j
+```
+
+---
+
+In case you still want to follow the Mintplex-Labs Fork (perhaps for specific experimental patches), you can still proceed with the instructions below:
 ## Download Pre-compiled Binaries
 
 For a quick setup, download the latest stable release for Windows (CUDA 13.2 / AVX2) [HERE](https://github.com/Addy-ad/lms-llama.cpp-prism-1bit/releases/tag/v1.0.0-cuda13.2)
